@@ -41,7 +41,14 @@ The hybrid achieved P@10 = 0.1323, R@10 = 0.3003, F1@10 = 0.1823, a balanced yet
 Two pragmatic assumptions underlie the pipeline: binarization of explicit ratings into implicit “likes,” and sparsity filtering of low-activity users/items; both stabilize learning but shift the target from cardinal scores to top-N relevance. The hybrid assumes a linear trade-off between CF and CBF; LightFM relaxes this by learning feature-aware embeddings while explicitly optimizing rank, which mitigates some linear-blend limitations. Finally, cold-start is handled by metadata-driven CBF and a popularity fallback, ensuring reasonable recs even before CF has signal; this design decision prioritizes user experience during ramp-up and aligns with production constraints.
 
 ---
+
 ## Conclusion & Future Scope
 A clear path emerges: start with the hybrid for transparency and quick wins, then promote to LightFM (WARP) when side features are reliable and top-K uplift justifies complexity. Future extensions include tuning hybrid non-linearly, enriching item features with learned text embeddings, and expanding LightFM searches over components/loss/lr to chase marginal gains while monitoring online relevance. This staged approach balances explainability, cold-start robustness, and ranking performance for a real-world recommender.
 
 ---
+
+## Contributors
+- Anirudh A
+- Balaji M
+- Hari Srijaa
+- Sai Krishna
