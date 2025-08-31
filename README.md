@@ -18,12 +18,12 @@ We set out to design a top-10 recommender that remains robust with sparse intera
 ---
 
 ## Dataset
-The corpus is a cleaned subset of Amazon reviews with user_id, asin, explicit ratings, and rich product metadata (title, main_category, store, price, features, details, description). After preprocessing and sparsity controls, the working matrix spans ~66k users, ~5k products, and 68k+ ratings; we retain users and items with ≥3 interactions to stabilize training and evaluation. For ranking models that require implicit feedback, ratings are binarized with ≥2.5 treated as positive interactions. These choices reduce extreme sparsity, align targets with top-N ranking, and preserve enough coverage for side-feature modeling.
+The corpus is a cleaned subset of Amazon reviews with user_id, asin, explicit ratings, and rich product metadata (title, main_category, store, price, features, details, description). After preprocessing and sparsity controls, the working matrix spans ~66k users, ~5k products, and 68k+ ratings; we retain users and items with ≥ 3 interactions to stabilize training and evaluation. For ranking models that require implicit feedback, ratings are binarized with ≥ 2.5 treated as positive interactions. These choices reduce extreme sparsity, align targets with top-N ranking, and preserve enough coverage for side-feature modeling.
 
 ---
 
 ## Data Preparation
-We assemble a user–item interaction matrix for CF and a consolidated text field for CBF from product title, category, description, price, store, features, and details, then vectorize text with TF-IDF and apply LSA (Truncated SVD) for dense item embeddings. Typical dimensionalities are compact (e.g., k≈20 CF factors; ≈100-dim LSA vectors) to keep scoring fast while retaining signal. These representations support scalable dot-product scoring on the CF side and cosine similarity on the CBF side, with all features kept sparse/dense as appropriate for efficient computation.
+We assemble a user–item interaction matrix for CF and a consolidated text field for CBF from product title, category, description, price, store, features, and details, then vectorize text with TF-IDF and apply LSA (Truncated SVD) for dense item embeddings. Typical dimensionalities are compact (e.g., k ≈ 20 CF factors; ≈100-dim LSA vectors) to keep scoring fast while retaining signal. These representations support scalable dot-product scoring on the CF side and cosine similarity on the CBF side, with all features kept sparse/dense as appropriate for efficient computation.
 
 ---
 
